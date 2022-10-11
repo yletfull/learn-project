@@ -5,7 +5,6 @@ import AppLink, {AppLinkTheme} from "shared/ui/AppLink/AppLink";
 
 interface NavbarProps {
   className?: string,
-
 }
 
 const Navbar = ({className}: NavbarProps) => {
