@@ -35,6 +35,7 @@
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-config-xo": "^0.42.0",
     "eslint-config-xo-typescript": "^0.53.0",
+    "eslint-plugin-i18next": "^6.0.0-2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
