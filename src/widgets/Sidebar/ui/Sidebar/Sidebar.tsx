@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react';
 import ThemeSwitcher from 'widgets/ThemeSwitcher';
 import LangSwitcher from 'widgets/LangSwitcher';
 import { useTranslation } from 'react-i18next';
-import Button from 'shared/ui/Button/Button';
+import Button, { ThemeButton } from 'shared/ui/Button/Button';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -27,7 +27,7 @@ const Sidebar:FC<SidebarProps> = (props) => {
       className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
       {...otherProps}
     >
-      <Button onClick={handleToggle} className={cls.switchButton}>
+      <Button theme={ThemeButton.Clear} onClick={handleToggle} className={cls.switchButton}>
         {collapsed ? t('Свернуть') : t('Развернуть')}
       </Button>
       <div className={cls.switchers}>
