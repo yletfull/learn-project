@@ -14,7 +14,6 @@ function AppRouter() {
           />
         ))}
       </Routes>
-      ~
     </Suspense>
   );
 }
