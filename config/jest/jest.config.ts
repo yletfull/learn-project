@@ -15,7 +15,7 @@ export default {
 
   // Automatically clear mock calls, instances and results before every test
   clearMocks: true,
-  // testEnvironment: 'jsdom',
+  testEnvironment: 'jsdom',
   coveragePathIgnorePatterns: [
     '\\\\node_modules\\\\',
   ],
@@ -31,10 +31,20 @@ export default {
     'node_modules',
   ],
   testMatch: [
-    // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
     '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
   ],
   rootDir: '../../',
+  modulePaths: [
+    '<rootDir>src',
+  ],
+  setupFilesAfterEnv: [
+    '<rootDir>/config/jest/setupTests.ts',
+  ],
+  moduleNameMapper: {
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+        '<rootDir>/__mocks__/fileMock.js',
+    '\\.(css|scss|less)$': 'identity-obj-proxy',
+  },
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
 
