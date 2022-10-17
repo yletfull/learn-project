@@ -25,9 +25,15 @@ const Sidebar:FC<SidebarProps> = (props) => {
   return (
     <div
       className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
+      data-testid="sidebar"
       {...otherProps}
     >
-      <Button theme={ThemeButton.Clear} onClick={handleToggle} className={cls.switchButton}>
+      <Button
+        theme={ThemeButton.Clear}
+        data-testid="sidebarToggleButton"
+        onClick={handleToggle}
+        className={cls.switchButton}
+      >
         {collapsed ? t('Свернуть') : t('Развернуть')}
       </Button>
       <div className={cls.switchers}>
