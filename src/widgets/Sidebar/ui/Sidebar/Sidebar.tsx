@@ -1,6 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import React, { FC, useState } from 'react';
-import ThemeSwitcher from 'widgets/ThemeSwitcher';
 import LangSwitcher from 'widgets/LangSwitcher';
 import { useTranslation } from 'react-i18next';
 import Button from 'shared/ui/Button/Button';
@@ -36,7 +35,6 @@ const Sidebar:FC<SidebarProps> = (props) => {
         {collapsed ? t('Свернуть') : t('Развернуть')}
       </Button>
       <div className={cls.switchers}>
-        <ThemeSwitcher />
         <LangSwitcher />
       </div>
     </div>
