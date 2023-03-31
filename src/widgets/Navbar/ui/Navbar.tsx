@@ -24,8 +24,15 @@ function Navbar({ className }: NavbarProps) {
         <AppLink
           to="/about"
           theme={AppLinkTheme.SECONDARY}
+          className={cls.mainLink}
         >
           {t('О сайте')}
+        </AppLink>
+        <AppLink
+          to="/user"
+          theme={AppLinkTheme.SECONDARY}
+        >
+          {t('Мой профиль')}
         </AppLink>
       </div>
     </div>
