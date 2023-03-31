@@ -16,6 +16,7 @@ const LangSwitcher:FC<ThemeSwitcherProps> = () => {
   return (
     <Button
       onClick={toggle}
+      variant="contained"
     >
       {t('Язык')}
     </Button>
