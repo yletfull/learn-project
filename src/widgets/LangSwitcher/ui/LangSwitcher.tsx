@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import Button, { ThemeButton } from 'shared/ui/Button/Button';
+import Button from 'shared/ui/Button/Button';
 
 interface ThemeSwitcherProps {
   className?: string,
@@ -15,7 +15,6 @@ const LangSwitcher:FC<ThemeSwitcherProps> = () => {
 
   return (
     <Button
-      theme={ThemeButton.Clear}
       onClick={toggle}
     >
       {t('Язык')}

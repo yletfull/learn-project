@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react';
 import ThemeSwitcher from 'widgets/ThemeSwitcher';
 import LangSwitcher from 'widgets/LangSwitcher';
 import { useTranslation } from 'react-i18next';
-import Button, { ThemeButton } from 'shared/ui/Button/Button';
+import Button from 'shared/ui/Button/Button';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -29,7 +29,6 @@ const Sidebar:FC<SidebarProps> = (props) => {
       {...otherProps}
     >
       <Button
-        theme={ThemeButton.Clear}
         data-testid="sidebarToggleButton"
         onClick={handleToggle}
         className={cls.switchButton}
