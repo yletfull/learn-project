@@ -1,20 +1,37 @@
-import React, { FC, useMemo, useState } from 'react';
-import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContext';
+import React, { FC, useMemo } from 'react';
+import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material';
+// import { LOCAL_STORAGE_THEME_KEY, Theme } from '../lib/ThemeContext';
 
-const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
+import componentsOverride from '../lib/overrides';
+import {
+  customShadows,
+  palette,
+  shadows,
+  typography,
+} from '../lib';
+
+// const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
 
 const ThemeProvider: FC = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  const themeOptions = useMemo(
+    () => ({
+      palette,
+      typography,
+      shadows: shadows(),
+      customShadows: customShadows(),
+      shape: { borderRadius: 6 },
+    }),
+    [],
+  );
 
-  const defaultProps = useMemo(() => ({
-    theme,
-    setTheme,
-  }), [theme]);
+  const theme = createTheme(themeOptions as any);
+  theme.components = componentsOverride(theme);
 
   return (
-    <ThemeContext.Provider value={defaultProps}>
+    <MUIThemeProvider theme={theme}>
       {children}
-    </ThemeContext.Provider>
+    </MUIThemeProvider>
   );
 };
 

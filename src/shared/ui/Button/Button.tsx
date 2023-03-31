@@ -1,33 +1,25 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ButtonHTMLAttributes, FC } from 'react';
-import cls from './Button.module.scss';
+import { FC } from 'react';
+import { Button as MUIButton, ButtonProps as MUIButtonProps } from '@mui/material';
 
-export enum ThemeButton {
-  Clear = 'clear',
-  Primary = 'primary',
-}
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends MUIButtonProps {
   className?: string,
-  theme?: ThemeButton,
 }
 
 const Button:FC<ButtonProps> = (props) => {
   const {
     className,
     children,
-    theme = ThemeButton.Clear,
     ...otherProps
   } = props;
 
   return (
-    <button
-      type="button"
-      className={classNames(cls.Button, {}, [className, cls[theme]])}
+    <MUIButton
+      className={classNames(className)}
       {...otherProps}
     >
       {children}
-    </button>
+    </MUIButton>
   );
 };
 
