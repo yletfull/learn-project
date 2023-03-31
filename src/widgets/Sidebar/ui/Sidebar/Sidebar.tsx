@@ -2,21 +2,21 @@ import React, { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Avatar,
-  Box, Button,
-  Drawer,
+  Box,
+  Button,
+  Drawer, IconButton,
   Link,
   styled,
   Typography,
 } from '@mui/material';
-import useResponsive from 'app/providers/ThemeProvider/model/useResponsive';
-import { Query } from 'shared/types/theme';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { alpha } from '@mui/material/styles';
+import useResponsive from 'app/providers/ThemeProvider/model/useResponsive';
+import LangSwitcher from 'widgets/LangSwitcher';
+import { Query } from 'shared/types/theme';
+import { KeyboardArrowLeft } from '@mui/icons-material';
 import { NAV_WIDTH } from './constants';
-import LangSwitcher from '../../../LangSwitcher';
-
-interface SidebarProps {
-  className?: string,
-}
 
 const StyledAccount = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -26,11 +26,7 @@ const StyledAccount = styled('div')(({ theme }) => ({
   backgroundColor: alpha(theme.palette.grey[500], 0.12),
 }));
 
-const Sidebar:FC<SidebarProps> = (props) => {
-  const {
-    className,
-    // ...otherProps
-  } = props;
+const Sidebar:FC = (props) => {
   const { t } = useTranslation();
   const isDesktop = useResponsive(Query.Up, 'lg');
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -39,7 +35,7 @@ const Sidebar:FC<SidebarProps> = (props) => {
   const renderContent = (
     <Box>
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
-        Logo
+        {t('Меню')}
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>
@@ -70,6 +66,7 @@ const Sidebar:FC<SidebarProps> = (props) => {
           position: 'absolute',
           bottom: 10,
           left: 20,
+          width: 'calc(100% - 40px)',
         }}
       >
         <LangSwitcher />
@@ -79,15 +76,17 @@ const Sidebar:FC<SidebarProps> = (props) => {
           display: 'flex',
           justifyContent: 'center',
           position: 'absolute',
-          bottom: 10,
+          top: 20,
           right: 20,
         }}
       >
         <Button
+          aria-label={t('Свернуть')}
+          size="small"
           onClick={handleToggle}
-          variant="contained"
+          startIcon={<KeyboardArrowLeftIcon />}
         >
-          {isCollapsed ? t('Свернуть') : t('Развернуть')}
+          {t('Свернуть')}
         </Button>
       </Box>
     </Box>
@@ -101,6 +100,24 @@ const Sidebar:FC<SidebarProps> = (props) => {
         width: { lg: NAV_WIDTH },
       }}
     >
+      {!isCollapsed && (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            position: 'fixed',
+            top: 150,
+            left: -20,
+          }}
+        >
+          <Button
+            onClick={handleToggle}
+            variant="outlined"
+            color="secondary"
+            endIcon={<KeyboardArrowRightIcon />}
+          />
+        </Box>
+      )}
       {isDesktop ? (
         <Drawer
           open
